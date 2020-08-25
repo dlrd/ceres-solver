@@ -34,6 +34,7 @@
 #include <mutex>
 #include <thread>
 #include <vector>
+#include <functional> // Smode Tech for visual 2019 std::function
 
 #include "ceres/concurrent_queue.h"
 
