@@ -49,6 +49,7 @@
 #include "ceres/internal/port.h"
 
 #include <algorithm>
+#include <random> // SMODE TECH C++17 for random_device
 #include <map>
 #include "ceres/block_random_access_matrix.h"
 #include "ceres/block_sparse_matrix.h"
@@ -155,7 +156,7 @@ void SchurEliminator<kRowBlockSize, kEBlockSize, kFBlockSize>::Init(
 
   uneliminated_row_begins_ = chunk.start + chunk.size;
   if (num_threads_ > 1) {
-    random_shuffle(chunks_.begin(), chunks_.end());
+    std::shuffle(chunks_.begin(), chunks_.end(), std::mt19937(std::random_device()()));  // SMODETECH c++17 std::random_shuffle(chunks_.begin(), chunks_.end()); 
   }
 
   buffer_.reset(new double[buffer_size_ * num_threads_]);
